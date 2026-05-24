@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  frontend:
+    image: ${DOCKERHUB_USER}/front-despacho:latest
+    container_name: frontend-react
+    restart: unless-stopped
+    ports: ["80:80"]
+    volumes:
+      - frontend_logs:/var/log/nginx
+    networks: [frontend-net]
+
+volumes:
+  frontend_logs:
+
+networks:
+  frontend-net:
+    driver: bridge
